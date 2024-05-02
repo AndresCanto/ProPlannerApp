@@ -32,14 +32,16 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
 
+    // try sign in
     try {
-      // create the user
-      await FirebaseAuth.instance.signInWithEmailAndPassword(email: emailController.text, password: passwordController.text);
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text,
+        password: passwordController.text,
+      );
 
       // pop loading circle
-      if(context.mounted) Navigator.pop(context);
-    }
-    on FirebaseAuthException catch (e) {
+      if (context.mounted) Navigator.pop(context);
+    } on FirebaseAuthException catch (e) {
       //pop loading circle
       Navigator.pop(context);
       //display error message to the user
