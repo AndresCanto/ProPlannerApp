@@ -24,8 +24,9 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: ListView(
+        child: Column(
           children: [
+            const SizedBox(height: 50,),
             FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
               future: getUserDetails(),
               builder: (context, snapshot) {
@@ -46,9 +47,34 @@ class SettingsPage extends StatelessWidget {
 
                   return Center(
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Text(user!['email']),
-                        Text(user['username']),
+                        Container(
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).colorScheme.primary,
+                            borderRadius: BorderRadius.circular(24),
+                          ),
+                          padding: const EdgeInsets.all(25),
+                          child: const Icon(
+                            Icons.person,
+                            size: 80,
+                          ),
+                        ),
+                        const SizedBox(height: 25),
+                        Text(
+                          user!['username'],
+                          style: const TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          user['email'],
+                          style: TextStyle(
+                            color: Colors.grey[600],
+                          ),
+                        ),
                       ],
                     ),
                   );
@@ -57,16 +83,18 @@ class SettingsPage extends StatelessWidget {
                 }
               },
             ),
+            const SizedBox(height: 200,),
             GestureDetector(
               onTap: logout,
               child: Container(
                 decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.primary,
+                  borderRadius: BorderRadius.circular(10)
                 ),
-                padding: const EdgeInsets.all(20),
+                padding: const EdgeInsets.symmetric(horizontal: 120, vertical: 20),
                 child: const Text(
                   "Cerrar sesión",
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                 ),
               ),
             ),
