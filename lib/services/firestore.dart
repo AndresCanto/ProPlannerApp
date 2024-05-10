@@ -2,33 +2,41 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FirestoreService {
 
-  // get collection of notes
-  final CollectionReference notes = FirebaseFirestore.instance.collection('notes');
-  // CREATE: add a new note
-  Future<void> addNote(String note) {
-    return notes.add({
-      'note': note,
+  // get collection of projects
+  final CollectionReference projects = FirebaseFirestore.instance.collection('projects');
+  // CREATE: add a new project
+  Future<void> addProject(String project, String description, int progress) {
+    return projects.add({
+      'title': project,
+      'description': description,
+      //'date': date,
+      //'team': team,
+      'progress': progress,
       'timestamp': Timestamp.now(),
     });
   }
-  // READ: get notes from database
-  Stream<QuerySnapshot> getNotesStream() {
-    final notesStream =
-        notes.orderBy("timestamp", descending: true).snapshots();
+  // READ: get projects from database
+  Stream<QuerySnapshot> getProjectsStream() {
+    final projectsStream =
+      projects.orderBy("timestamp", descending: true).snapshots();
 
-    return notesStream;
+    return projectsStream;
   }
 
-  // UPDATE: update notes given a doc id
-  Future<void> updateNote(String docID, String newNote) {
-    return notes.doc(docID).update({
-      'note': newNote,
+  // UPDATE: update projects given a doc id
+  Future<void> updateProject(String docID, String newProject, String description, int progress) {
+    return projects.doc(docID).update({
+      'title': newProject,
+      'description': description,
+      //'date': date,
+      //'team': team,
+      'progress': progress,
       'timestamp':Timestamp.now(),
     });
   }
 
-  // DELETE: delete notes given a doc id
-  Future<void> deleteNote(String docID) {
-    return notes.doc(docID).delete();
+  // DELETE: delete projects given a doc id
+  Future<void> deleteProject(String docID) {
+    return projects.doc(docID).delete();
   }
 }
