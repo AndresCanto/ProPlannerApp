@@ -1,9 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:notes_app/pages/home_page.dart';
-import 'package:notes_app/pages/projects_page.dart';
-import 'package:notes_app/pages/settings_page.dart';
-import 'package:notes_app/pages/tasks_page.dart';
+import '../pages/home_page.dart';
+import '../pages/projects_page.dart';
+import '../pages/settings_page.dart';
+import '../pages/tasks_page.dart';
 
 class FramePage extends StatefulWidget {
   const FramePage({super.key});
@@ -20,30 +19,16 @@ class _FramePageState extends State<FramePage> {
       _selectedIndex = index;
     });
   }
-  List _pages = [
+  final List _pages = [
     const HomePage(),
     const ProjectsPage(),
     const TasksPage(),
-    const SettingsPage(),
+    SettingsPage(),
   ];
-
-  void logout() {
-    FirebaseAuth.instance.signOut();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(_pages[_selectedIndex].toString().split(RegExp(r"(?=[A-Z])")).first),
-        actions: [
-          // logout button
-          IconButton(
-            onPressed: logout,
-            icon: const Icon(Icons.logout),
-          ),
-        ],
-      ),
       body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
@@ -70,7 +55,6 @@ class _FramePageState extends State<FramePage> {
             icon: Icon(Icons.settings),
             label: 'Settings',
           ),
-
         ],
       ),
     );
