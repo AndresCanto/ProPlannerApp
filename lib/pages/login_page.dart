@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:notes_app/components/my_button.dart';
-import 'package:notes_app/components/my_textfield.dart';
 
+import '../components/my_button.dart';
+import '../components/my_textfield.dart';
 import '../helper/helper_function.dart';
 
 class LoginPage extends StatefulWidget {
@@ -54,86 +54,89 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(25.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // logo
-              Icon(
-                Icons.person,
-                size: 80,
-                color: Theme.of(context).colorScheme.inversePrimary,
-              ),
-              const SizedBox(height: 25),
+        child: ListView(
+          shrinkWrap: true,
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          children: [
+            // logo
+            Icon(
+              Icons.deblur,
+              size: 200,
+              color: Theme.of(context).colorScheme.inversePrimary,
+            ),
+            const SizedBox(height: 25),
 
-              // app name
-              const Text(
+            // app name
+            const Center(
+              child: Text(
                 "PRO PLANNER",
-                style: TextStyle(fontSize: 20),
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
-              const SizedBox(height: 50),
+            ),
+            const SizedBox(height: 50),
 
-              // email textfield
-              MyTextField(
-                hintText: "Email",
-                obscureText: false,
-                controller: emailController,
-              ),
-              const SizedBox(height: 10),
+            // email textfield
+            MyTextField(
+              hintText: "Correo",
+              obscureText: false,
+              controller: emailController,
+            ),
+            const SizedBox(height: 25),
 
-              //password textfield
-              MyTextField(
-                hintText: "Password",
-                obscureText: true,
-                controller: passwordController,
-              ),
-              const SizedBox(height: 10),
+            //password textfield
+            MyTextField(
+              hintText: "Contraseña",
+              obscureText: true,
+              controller: passwordController,
+            ),
+            const SizedBox(height: 10),
 
-              // forgot password
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text(
-                    "Forogot password?",
+            // forgot password
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text(
+                  "Olvidaste tu contraseña?",
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.secondary,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 25),
+
+            // login button
+            MyButton(
+              text: "Iniciar sesión",
+              onTap: login,
+            ),
+            const SizedBox(height: 20),
+
+            //dont have an account? Register here
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text(
+                  "No tienes una cuenta?",
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.secondary,
+                  ),
+                ),
+                GestureDetector(
+                  onTap: widget.onTap,
+                  child: const Text(
+                    " Crear cuenta.",
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.secondary,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                ],
-              ),
-              const SizedBox(height: 25),
-
-              // login button
-              MyButton(
-                text: "Login",
-                onTap: login,
-              ),
-              const SizedBox(height: 10),
-
-              //dont have an account? Register here
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text(
-                    "Don't have an account?",
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.secondary,
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: widget.onTap,
-                    child: const Text(
-                      " Register here.",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );
