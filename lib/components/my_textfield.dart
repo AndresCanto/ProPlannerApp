@@ -5,22 +5,34 @@ class MyTextField extends StatelessWidget {
   final bool obscureText;
   final TextEditingController controller;
 
-  const MyTextField({
-    super.key,
-    required this.hintText,
-    required this.obscureText,
-    required this.controller
-  });
+  const MyTextField(
+      {super.key,
+      required this.hintText,
+      required this.obscureText,
+      required this.controller});
 
   @override
   Widget build(BuildContext context) {
     return TextField(
       controller: controller,
+      cursorColor: Theme.of(context).colorScheme.secondary,
       decoration: InputDecoration(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
         ),
-        hintText: hintText,
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Theme.of(context).colorScheme.secondary,
+            width: 2.0,
+          ),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        labelText: hintText,
+        labelStyle: TextStyle(
+          color: Theme.of(context).colorScheme.secondary,
+          fontSize: 22,
+          fontWeight: FontWeight.w400,
+        ),
       ),
       obscureText: obscureText,
     );
