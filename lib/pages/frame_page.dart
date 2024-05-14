@@ -40,20 +40,20 @@ class _FramePageState extends State<FramePage> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'Home',
+            label: 'Inicio',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.business),
-            label: 'Projects',
+            label: 'Proyectos',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.task),
-            label: 'Tasks',
+            label: 'Tareas',
           ),
 
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
-            label: 'Settings',
+            label: 'Ajsutes',
           ),
         ],
       ),

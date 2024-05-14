@@ -58,21 +58,22 @@ class _LoginPageState extends State<LoginPage> {
           shrinkWrap: true,
           padding: const EdgeInsets.symmetric(horizontal: 20),
           children: [
+            //IMAGE
+            //Image.asset('lib/images/login.png'),
+
             // logo
             Icon(
               Icons.deblur,
               size: 200,
               color: Theme.of(context).colorScheme.inversePrimary,
             ),
-            const SizedBox(height: 25),
-
             // app name
             const Center(
               child: Text(
                 "PRO PLANNER",
                 style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w500,
+                  fontSize: 40,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
             ),

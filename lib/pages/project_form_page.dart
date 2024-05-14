@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../components/my_button.dart';
 import '../components/my_textfield.dart';
-import '../services/firestore.dart';
+import '../services/firestore_projects.dart';
 
 class ProjectFormPage extends StatefulWidget {
   const ProjectFormPage({super.key});
@@ -19,30 +19,11 @@ class _ProjectFormPageState extends State<ProjectFormPage> {
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController progressController = TextEditingController();
 
-  late final String? docID;
+  //final TextEditingController dueDateController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
-        currentIndex: 0,
-        selectedItemColor: Colors.blue,
-        type: BottomNavigationBarType.fixed,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-              label: 'Cancelar',
-              icon: Icon(
-                Icons.cancel,
-              )),
-          BottomNavigationBarItem(
-            label: "Guardar",
-            icon: Icon(
-              Icons.check_box,
-            ),
-          ),
-        ],
-      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 50),
@@ -80,31 +61,45 @@ class _ProjectFormPageState extends State<ProjectFormPage> {
                 obscureText: false,
                 controller: progressController,
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 40),
-                child: MyButton(
-                  text: "Add",
-                  onTap: () {
-                    // add a new project
-                    if (docID == null) {
-                      firestoreService.addProject(
-                          titleController.text, descriptionController.text, 0);
-                    }
-                    //update an existing note
-                    else {
-                      firestoreService.updateProject(docID!,
-                          titleController.text, descriptionController.text, 0);
-                    }
+              const SizedBox(height: 40),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Expanded(
+                    child: MyButton(
+                      text: "Add",
+                      onTap: () {
+                        // add a new project
+                        firestoreService.addProject(
+                            titleController.text,
+                            descriptionController.text,
+                            int.parse(progressController.text));
 
-                    // clear the text controller
-                    titleController.clear();
-                    descriptionController.clear();
-                    progressController.clear();
+                        // clear the text controller
+                        titleController.clear();
+                        descriptionController.clear();
+                        progressController.clear();
 
-                    // close the box
-                    Navigator.pop(context);
-                  },
-                ),
+                        // close the box
+                        Navigator.pop(context);
+                      },
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: MyButton(
+                      text: "Canecel",
+                      onTap: () {
+                        titleController.clear();
+                        descriptionController.clear();
+                        progressController.clear();
+                        //dueDateController.clear();
+
+                        Navigator.pop(context);
+                      },
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
