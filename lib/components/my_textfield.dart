@@ -14,6 +14,7 @@ class MyTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      style: const TextStyle(fontSize: 24),
       controller: controller,
       cursorColor: Theme.of(context).colorScheme.secondary,
       decoration: InputDecoration(

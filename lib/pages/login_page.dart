@@ -93,21 +93,7 @@ class _LoginPageState extends State<LoginPage> {
               obscureText: true,
               controller: passwordController,
             ),
-            const SizedBox(height: 10),
-
-            // forgot password
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Text(
-                  "Olvidaste tu contraseña?",
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.secondary,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 25),
+            const SizedBox(height: 35),
 
             // login button
             MyButton(

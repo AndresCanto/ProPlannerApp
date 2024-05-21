@@ -20,9 +20,9 @@ class _FramePageState extends State<FramePage> {
     });
   }
   final List _pages = [
-    const HomePage(),
+    //const HomePage(),
     const ProjectsPage(),
-    const TasksPage(),
+    TasksPage(),
     SettingsPage(),
   ];
 
@@ -38,10 +38,10 @@ class _FramePageState extends State<FramePage> {
         type: BottomNavigationBarType.fixed,
         // Esto asegura que todos los ítems se muestren de manera correcta
         items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
+          /*BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Inicio',
-          ),
+          ),*/
           BottomNavigationBarItem(
             icon: Icon(Icons.business),
             label: 'Proyectos',

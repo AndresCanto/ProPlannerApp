@@ -26,7 +26,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const ProjectFormPage()),
+                      builder: (context) => const ProjectFormPage(pID: null)),
                 );
               },
               backgroundColor: Colors.white,
@@ -58,7 +58,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
                   Map<String, dynamic> data =
                   document.data() as Map<String, dynamic>;
                   String projectTitle = data['title'];
-                  Timestamp date = data['timestamp'];
+                  Timestamp date = data['date'];
                   int progress = data['progress'];
 
 
